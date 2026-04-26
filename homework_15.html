@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Форма</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .error { color: red; }
+    .success { color: green; }
+  </style>
+</head>
+<body>
+
+  <h2>Введите данные</h2>
+
+  <form id="myForm">
+    <label>
+      Имя:
+      <input type="text" id="name" required>
+    </label>
+    <br><br>
+
+    <label>
+      Возраст:
+      <input type="text" id="age" required>
+    </label>
+    <br><br>
+
+    <button type="submit">Отправить</button>
+  </form>
+
+  <p id="message"></p>
+
+  <script>
+    const form = document.getElementById("myForm");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault(); 
+
+      const name = document.getElementById("name").value.trim();
+      const ageInput = document.getElementById("age").value.trim();
+      const age = Number(ageInput);
+
+      message.textContent = "";
+      message.className = "";
+
+      
+      if (name === "") {
+        message.textContent = "Введите имя.";
+        message.className = "error";
+        return;
+      }
+
+      
+      if (isNaN(age) || age <= 0) {
+        message.textContent = "Возраст должен быть положительным числом.";
+        message.className = "error";
+        return;
+      }
+
+     
+      message.textContent = 'Привет, {name} Тебе {age} лет'.
+      message.className = "success";
+
+      form.reset(); 
+    });
+  </script>
+
+</body>
+</html>
