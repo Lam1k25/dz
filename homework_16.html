@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input { display: block; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+  <h2>Регистрация</h2>
+
+  <form class="register-form">
+    <input type="text" class="name-input" placeholder="Введите имя">
+    
+    <label>
+      <input type="checkbox" class="agree-checkbox">
+      Согласен с условиями
+    </label>
+    
+    <button type="button" class="validate-button">Проверить</button>
+  </form>
+
+  <script>
+    const nameInput = document.querySelector(".name-input");
+    const agreeCheckbox = document.querySelector(".agree-checkbox");
+    const validateButton = document.querySelector(".validate-button");
+
+    let currentName = "";
+
+
+    nameInput.addEventListener("input", () => {
+      currentName = nameInput.value.trim();
+      console.log("Текущее имя:", currentName);
+    });
+
+    
+    validateButton.addEventListener("click", () => {
+      const isNameValid = currentName.length > 0;
+      const isAgreed = agreeCheckbox.checked;
+
+      if (!isNameValid) {
+        console.log("Ошибка: имя не введено.");
+        return;
+      }
+
+      if (!isAgreed) {
+        console.log("Ошибка: необходимо согласие с условиями.");
+        return;
+      }
+
+      console.log(Успешная регистрация. Добро пожаловать, ${currentName}!);
+    });
+  </script>
+
+</body>
+</html>
